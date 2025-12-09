@@ -12,6 +12,97 @@ body {
     position: relative;
 }
 
+/* Moon */
+.moon {
+    position: fixed;
+    top: 8%;
+    right: 10%;
+    width: 80px;
+    height: 80px;
+    background: #f4f1de;
+    border-radius: 50%;
+    box-shadow: 
+        0 0 20px #f4f1de,
+        0 0 40px #f4f1de,
+        0 0 60px rgba(244, 241, 222, 0.5);
+    z-index: 1;
+    animation: moon-glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes moon-glow {
+    0% { 
+        box-shadow: 
+            0 0 20px #f4f1de,
+            0 0 40px #f4f1de,
+            0 0 60px rgba(244, 241, 222, 0.5);
+    }
+    100% { 
+        box-shadow: 
+            0 0 30px #f4f1de,
+            0 0 60px #f4f1de,
+            0 0 90px rgba(244, 241, 222, 0.7);
+    }
+}
+
+.moon::before {
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background: #e8e4c9;
+    border-radius: 50%;
+    top: 20px;
+    left: 15px;
+}
+
+.moon::after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #e8e4c9;
+    border-radius: 50%;
+    bottom: 25px;
+    right: 20px;
+}
+
+/* Background Stars */
+.background-stars {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.bg-star {
+    position: absolute;
+    color: #fff;
+    font-size: 1.5em;
+    opacity: 0.8;
+    animation: star-twinkle 2s ease-in-out infinite;
+}
+
+.bg-star:nth-child(1) { animation-delay: 0s; }
+.bg-star:nth-child(2) { animation-delay: 0.3s; }
+.bg-star:nth-child(3) { animation-delay: 0.6s; }
+.bg-star:nth-child(4) { animation-delay: 0.9s; }
+.bg-star:nth-child(5) { animation-delay: 1.2s; }
+.bg-star:nth-child(6) { animation-delay: 1.5s; }
+.bg-star:nth-child(7) { animation-delay: 1.8s; }
+.bg-star:nth-child(8) { animation-delay: 2.1s; }
+
+@keyframes star-twinkle {
+    0%, 100% { 
+        opacity: 0.8;
+        transform: scale(1) rotate(0deg);
+    }
+    50% { 
+        opacity: 0.3;
+        transform: scale(0.7) rotate(180deg);
+    }
+}
+
 /* Snow Animation */
 .snow-container {
     position: fixed;
@@ -89,6 +180,12 @@ body {
 
 .reindeer-body {
     position: relative;
+    animation: gallop 0.4s ease-in-out infinite;
+}
+
+@keyframes gallop {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-2px); }
 }
 
 .reindeer .head {
@@ -99,6 +196,37 @@ body {
     position: relative;
 }
 
+.reindeer .ear {
+    width: 8px;
+    height: 12px;
+    background: #8B4513;
+    border-radius: 50% 50% 0 0;
+    position: absolute;
+    top: -5px;
+}
+
+.reindeer .ear-left {
+    left: 2px;
+    transform: rotate(-15deg);
+}
+
+.reindeer .ear-right {
+    right: 2px;
+    transform: rotate(15deg);
+}
+
+.reindeer .eye-deer {
+    width: 3px;
+    height: 3px;
+    background: #000;
+    border-radius: 50%;
+    position: absolute;
+    top: 10px;
+}
+
+.reindeer .eye-deer-left { left: 8px; }
+.reindeer .eye-deer-right { right: 8px; }
+
 .reindeer .nose {
     width: 12px;
     height: 12px;
@@ -107,7 +235,13 @@ body {
     position: absolute;
     top: 20px;
     left: 15px;
-    box-shadow: 0 0 10px #ff6666;
+    box-shadow: 0 0 10px #ff6666, 0 0 20px #ff0000;
+    animation: nose-glow 1s ease-in-out infinite alternate;
+}
+
+@keyframes nose-glow {
+    0% { box-shadow: 0 0 10px #ff6666, 0 0 20px #ff0000; }
+    100% { box-shadow: 0 0 20px #ff6666, 0 0 30px #ff0000; }
 }
 
 .reindeer .antlers {
@@ -134,6 +268,17 @@ body {
     transform: rotate(-30deg);
 }
 
+.reindeer .antlers.left::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 8px;
+    background: #654321;
+    top: 3px;
+    left: -3px;
+    transform: rotate(-45deg);
+}
+
 .reindeer .antlers.right {
     right: 5px;
     transform: rotate(20deg);
@@ -148,6 +293,17 @@ body {
     top: 5px;
     right: -5px;
     transform: rotate(30deg);
+}
+
+.reindeer .antlers.right::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 8px;
+    background: #654321;
+    top: 3px;
+    right: -3px;
+    transform: rotate(45deg);
 }
 
 .reindeer .body {
@@ -168,10 +324,32 @@ body {
     top: 50px;
 }
 
-.reindeer .leg1 { left: 0px; }
-.reindeer .leg2 { left: 10px; }
-.reindeer .leg3 { left: 20px; }
-.reindeer .leg4 { left: 30px; }
+.reindeer .leg1 { 
+    left: 0px;
+    animation: leg-move-front 0.4s ease-in-out infinite;
+}
+.reindeer .leg2 { 
+    left: 10px;
+    animation: leg-move-back 0.4s ease-in-out infinite;
+}
+.reindeer .leg3 { 
+    left: 20px;
+    animation: leg-move-front 0.4s ease-in-out infinite;
+}
+.reindeer .leg4 { 
+    left: 30px;
+    animation: leg-move-back 0.4s ease-in-out infinite;
+}
+
+@keyframes leg-move-front {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(10deg); }
+}
+
+@keyframes leg-move-back {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(-10deg); }
+}
 
 /* Sleigh */
 .sleigh {
@@ -187,6 +365,44 @@ body {
     border-radius: 10px 10px 30px 30px;
     border: 3px solid gold;
     position: relative;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
+}
+
+.sleigh .gift {
+    position: absolute;
+    font-size: 1.2em;
+    animation: gift-wobble 1s ease-in-out infinite;
+}
+
+.sleigh .gift1 {
+    top: -15px;
+    left: 10px;
+    animation-delay: 0s;
+}
+
+.sleigh .gift2 {
+    top: -15px;
+    right: 10px;
+    animation-delay: 0.3s;
+}
+
+.sleigh .sack {
+    position: absolute;
+    font-size: 1.5em;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: sack-bounce 0.8s ease-in-out infinite;
+}
+
+@keyframes gift-wobble {
+    0%, 100% { transform: rotate(-2deg); }
+    50% { transform: rotate(2deg); }
+}
+
+@keyframes sack-bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-3px); }
 }
 
 .runner {
@@ -196,6 +412,7 @@ body {
     border-radius: 50%;
     position: absolute;
     bottom: -15px;
+    box-shadow: 0 2px 5px rgba(255, 215, 0, 0.5);
 }
 
 .runner1 { left: -5px; }
@@ -206,6 +423,12 @@ body {
     position: absolute;
     left: 15px;
     top: 0;
+    animation: santa-bounce 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes santa-bounce {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-3px); }
 }
 
 .santa-head {
@@ -225,6 +448,16 @@ body {
     left: 0;
 }
 
+.santa .hat-trim {
+    width: 44px;
+    height: 6px;
+    background: white;
+    border-radius: 3px;
+    position: absolute;
+    top: 3px;
+    left: -2px;
+}
+
 .santa .hat-pom {
     width: 12px;
     height: 12px;
@@ -233,6 +466,12 @@ body {
     position: absolute;
     top: -28px;
     left: 14px;
+    animation: pom-bounce 0.6s ease-in-out infinite;
+}
+
+@keyframes pom-bounce {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
 }
 
 .santa .face {
@@ -243,6 +482,31 @@ body {
     position: absolute;
     top: 5px;
 }
+
+.santa .eye {
+    width: 4px;
+    height: 4px;
+    background: #000;
+    border-radius: 50%;
+    position: absolute;
+    top: 10px;
+}
+
+.santa .eye-left { left: 10px; }
+.santa .eye-right { right: 10px; }
+
+.santa .cheek {
+    width: 8px;
+    height: 8px;
+    background: #ffb6c1;
+    border-radius: 50%;
+    position: absolute;
+    top: 15px;
+    opacity: 0.6;
+}
+
+.santa .cheek-left { left: 3px; }
+.santa .cheek-right { right: 3px; }
 
 .santa .beard {
     width: 40px;
@@ -263,6 +527,27 @@ body {
     border: 2px solid white;
 }
 
+.santa .belt {
+    width: 100%;
+    height: 8px;
+    background: #000;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.santa .buckle {
+    width: 12px;
+    height: 10px;
+    background: #FFD700;
+    border: 2px solid #000;
+    border-radius: 2px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 .santa .arm {
     width: 8px;
     height: 30px;
@@ -275,11 +560,36 @@ body {
 .santa .arm-left {
     left: -5px;
     transform: rotate(-20deg);
+    animation: wave-left 2s ease-in-out infinite;
+    transform-origin: top center;
 }
 
 .santa .arm-right {
     right: -5px;
     transform: rotate(20deg);
+    animation: wave-right 2s ease-in-out infinite;
+    transform-origin: top center;
+}
+
+@keyframes wave-left {
+    0%, 100% { transform: rotate(-20deg); }
+    50% { transform: rotate(-40deg); }
+}
+
+@keyframes wave-right {
+    0%, 100% { transform: rotate(20deg); }
+    50% { transform: rotate(40deg); }
+}
+
+.santa .hand {
+    width: 10px;
+    height: 10px;
+    background: #ffdbac;
+    border-radius: 50%;
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 /* Greeting */
@@ -402,6 +712,132 @@ body {
     }
 }
 
+/* Snowman */
+.snowman {
+    position: absolute;
+    bottom: 20px;
+    left: 30%;
+    z-index: 6;
+    animation: snowman-sway 4s ease-in-out infinite;
+}
+
+@keyframes snowman-sway {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(1deg); }
+}
+
+.snowman-bottom {
+    width: 50px;
+    height: 50px;
+    background: white;
+    border-radius: 50%;
+    position: relative;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.snowman-middle {
+    width: 40px;
+    height: 40px;
+    background: white;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 40px;
+    left: 5px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.snowman-head {
+    width: 30px;
+    height: 30px;
+    background: white;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 70px;
+    left: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.snowman-eye {
+    width: 3px;
+    height: 3px;
+    background: #000;
+    border-radius: 50%;
+    position: absolute;
+    top: 10px;
+}
+
+.snowman-eye-left { left: 8px; }
+.snowman-eye-right { right: 8px; }
+
+.snowman-nose {
+    width: 0;
+    height: 0;
+    border-top: 3px solid transparent;
+    border-bottom: 3px solid transparent;
+    border-left: 10px solid #ff8c00;
+    position: absolute;
+    top: 13px;
+    right: 0;
+}
+
+.snowman-hat {
+    width: 24px;
+    height: 15px;
+    background: #000;
+    position: absolute;
+    bottom: 95px;
+    left: 13px;
+    border-radius: 2px 2px 0 0;
+}
+
+.snowman-hat-brim {
+    width: 32px;
+    height: 4px;
+    background: #000;
+    position: absolute;
+    bottom: 95px;
+    left: 9px;
+    border-radius: 2px;
+}
+
+/* Ground Gifts */
+.ground-gifts {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    z-index: 6;
+}
+
+.ground-gift {
+    position: absolute;
+    font-size: 2.5em;
+    animation: gift-float 3s ease-in-out infinite;
+}
+
+.gift-box1 {
+    left: 15%;
+    animation-delay: 0s;
+}
+
+.gift-box2 {
+    right: 20%;
+    animation-delay: 0.5s;
+}
+
+.gift-box3 {
+    right: 35%;
+    animation-delay: 1s;
+}
+
+@keyframes gift-float {
+    0%, 100% { 
+        transform: translateY(0) rotate(-2deg);
+    }
+    50% { 
+        transform: translateY(-5px) rotate(2deg);
+    }
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .greeting {
@@ -418,5 +854,21 @@ body {
     
     .santa-sleigh {
         transform: scale(0.4);
+    }
+    
+    .moon {
+        width: 50px;
+        height: 50px;
+        top: 5%;
+        right: 5%;
+    }
+    
+    .snowman {
+        transform: scale(0.7);
+        left: 20%;
+    }
+    
+    .ground-gift {
+        font-size: 1.5em;
     }
 }

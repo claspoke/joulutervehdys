@@ -1,0 +1,422 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Georgia', serif;
+    background: linear-gradient(180deg, #0a1628 0%, #1a3a52 50%, #2d5a7b 100%);
+    min-height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Snow Animation */
+.snow-container {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+.snowflake {
+    position: absolute;
+    top: -10%;
+    color: white;
+    font-size: 1.5em;
+    opacity: 0.8;
+    animation: falling linear infinite;
+}
+
+.snowflake:nth-child(1) { left: 10%; animation-duration: 8s; animation-delay: 0s; }
+.snowflake:nth-child(2) { left: 20%; animation-duration: 10s; animation-delay: 1s; }
+.snowflake:nth-child(3) { left: 30%; animation-duration: 12s; animation-delay: 2s; }
+.snowflake:nth-child(4) { left: 40%; animation-duration: 9s; animation-delay: 0.5s; }
+.snowflake:nth-child(5) { left: 50%; animation-duration: 11s; animation-delay: 1.5s; }
+.snowflake:nth-child(6) { left: 60%; animation-duration: 10s; animation-delay: 0s; }
+.snowflake:nth-child(7) { left: 70%; animation-duration: 8s; animation-delay: 2.5s; }
+.snowflake:nth-child(8) { left: 80%; animation-duration: 12s; animation-delay: 1s; }
+.snowflake:nth-child(9) { left: 90%; animation-duration: 9s; animation-delay: 0.5s; }
+.snowflake:nth-child(10) { left: 95%; animation-duration: 11s; animation-delay: 2s; }
+
+@keyframes falling {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+    100% {
+        transform: translateY(110vh) rotate(360deg);
+    }
+}
+
+/* Santa and Sleigh Container */
+.santa-container {
+    position: absolute;
+    top: 15%;
+    left: -300px;
+    animation: flying 20s linear infinite;
+    z-index: 100;
+}
+
+.santa-sleigh {
+    position: relative;
+    transform: scale(0.6);
+}
+
+@keyframes flying {
+    0% {
+        left: -300px;
+        top: 15%;
+    }
+    50% {
+        top: 10%;
+    }
+    100% {
+        left: 110%;
+        top: 15%;
+    }
+}
+
+/* Reindeer */
+.reindeer {
+    position: absolute;
+    left: -80px;
+    top: 20px;
+}
+
+.reindeer-body {
+    position: relative;
+}
+
+.reindeer .head {
+    width: 30px;
+    height: 25px;
+    background: #8B4513;
+    border-radius: 50% 50% 40% 40%;
+    position: relative;
+}
+
+.reindeer .nose {
+    width: 12px;
+    height: 12px;
+    background: #ff0000;
+    border-radius: 50%;
+    position: absolute;
+    top: 20px;
+    left: 15px;
+    box-shadow: 0 0 10px #ff6666;
+}
+
+.reindeer .antlers {
+    position: absolute;
+    width: 3px;
+    height: 20px;
+    background: #654321;
+    top: -15px;
+}
+
+.reindeer .antlers.left {
+    left: 5px;
+    transform: rotate(-20deg);
+}
+
+.reindeer .antlers.left::before {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 10px;
+    background: #654321;
+    top: 5px;
+    left: -5px;
+    transform: rotate(-30deg);
+}
+
+.reindeer .antlers.right {
+    right: 5px;
+    transform: rotate(20deg);
+}
+
+.reindeer .antlers.right::before {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 10px;
+    background: #654321;
+    top: 5px;
+    right: -5px;
+    transform: rotate(30deg);
+}
+
+.reindeer .body {
+    width: 40px;
+    height: 30px;
+    background: #8B4513;
+    border-radius: 40%;
+    position: absolute;
+    top: 25px;
+    left: -5px;
+}
+
+.reindeer .leg {
+    width: 4px;
+    height: 25px;
+    background: #654321;
+    position: absolute;
+    top: 50px;
+}
+
+.reindeer .leg1 { left: 0px; }
+.reindeer .leg2 { left: 10px; }
+.reindeer .leg3 { left: 20px; }
+.reindeer .leg4 { left: 30px; }
+
+/* Sleigh */
+.sleigh {
+    position: relative;
+    left: 0;
+    top: 40px;
+}
+
+.sleigh-body {
+    width: 80px;
+    height: 40px;
+    background: #8B0000;
+    border-radius: 10px 10px 30px 30px;
+    border: 3px solid gold;
+    position: relative;
+}
+
+.runner {
+    width: 90px;
+    height: 8px;
+    background: #FFD700;
+    border-radius: 50%;
+    position: absolute;
+    bottom: -15px;
+}
+
+.runner1 { left: -5px; }
+.runner2 { left: -5px; bottom: -20px; }
+
+/* Santa */
+.santa {
+    position: absolute;
+    left: 15px;
+    top: 0;
+}
+
+.santa-head {
+    position: relative;
+    width: 40px;
+    height: 40px;
+}
+
+.santa .hat {
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 30px solid #ff0000;
+    position: absolute;
+    top: -25px;
+    left: 0;
+}
+
+.santa .hat-pom {
+    width: 12px;
+    height: 12px;
+    background: white;
+    border-radius: 50%;
+    position: absolute;
+    top: -28px;
+    left: 14px;
+}
+
+.santa .face {
+    width: 40px;
+    height: 30px;
+    background: #ffdbac;
+    border-radius: 50%;
+    position: absolute;
+    top: 5px;
+}
+
+.santa .beard {
+    width: 40px;
+    height: 20px;
+    background: white;
+    border-radius: 0 0 50% 50%;
+    position: absolute;
+    top: 25px;
+}
+
+.santa-body {
+    width: 45px;
+    height: 35px;
+    background: #ff0000;
+    border-radius: 5px;
+    position: relative;
+    top: 45px;
+    border: 2px solid white;
+}
+
+.santa .arm {
+    width: 8px;
+    height: 30px;
+    background: #ff0000;
+    border-radius: 5px;
+    position: absolute;
+    top: 50px;
+}
+
+.santa .arm-left {
+    left: -5px;
+    transform: rotate(-20deg);
+}
+
+.santa .arm-right {
+    right: -5px;
+    transform: rotate(20deg);
+}
+
+/* Greeting */
+.greeting-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 10;
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+.greeting {
+    font-size: 4em;
+    color: #fff;
+    text-shadow: 
+        0 0 10px #fff,
+        0 0 20px #fff,
+        0 0 30px #ff0000,
+        0 0 40px #ff0000,
+        0 0 50px #ff0000,
+        0 0 60px #ff0000,
+        0 0 70px #ff0000;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.sub-greeting {
+    font-size: 1.5em;
+    color: #ffd700;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    margin-top: 10px;
+}
+
+.stars {
+    margin-top: 20px;
+    font-size: 2em;
+}
+
+.star {
+    display: inline-block;
+    margin: 0 10px;
+    animation: twinkle 1.5s ease-in-out infinite;
+}
+
+.star:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+.star:nth-child(3) {
+    animation-delay: 1s;
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 
+            0 0 10px #fff,
+            0 0 20px #fff,
+            0 0 30px #ff0000,
+            0 0 40px #ff0000;
+    }
+    to {
+        text-shadow: 
+            0 0 20px #fff,
+            0 0 30px #ff0000,
+            0 0 40px #ff0000,
+            0 0 50px #ff0000,
+            0 0 60px #ff0000;
+    }
+}
+
+@keyframes twinkle {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.5;
+        transform: scale(0.8);
+    }
+}
+
+/* Trees */
+.trees {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    z-index: 5;
+}
+
+.tree {
+    position: absolute;
+    bottom: 0;
+    font-size: 5em;
+    animation: sway 3s ease-in-out infinite;
+}
+
+.tree1 {
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.tree2 {
+    left: 45%;
+    animation-delay: 0.5s;
+}
+
+.tree3 {
+    right: 10%;
+    animation-delay: 1s;
+}
+
+@keyframes sway {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(2deg);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .greeting {
+        font-size: 2.5em;
+    }
+    
+    .sub-greeting {
+        font-size: 1em;
+    }
+    
+    .tree {
+        font-size: 3em;
+    }
+    
+    .santa-sleigh {
+        transform: scale(0.4);
+    }
+}

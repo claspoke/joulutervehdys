@@ -1469,14 +1469,16 @@ body {
     border: 2px solid #654321;
     position: absolute;
     top: -75px;
-    right: 20px;
     border-radius: 2px 2px 0 0;
     z-index: 1;
 }
 
+.chimney:not(.chimney-left) {
+    right: 20px;
+}
+
 .chimney-left {
     left: 20px;
-    right: auto;
 }
 
 .chimney::before {
@@ -1503,16 +1505,20 @@ body {
     animation: smoke-rise 3s ease-out infinite;
 }
 
-.smoke:nth-child(1) {
-    animation-delay: 0s;
-}
-
 .smoke:nth-child(2) {
     animation-delay: 1s;
 }
 
 .smoke:nth-child(3) {
     animation-delay: 2s;
+}
+
+.smoke:nth-child(4) {
+    animation-delay: 0.5s;
+}
+
+.smoke:nth-child(5) {
+    animation-delay: 1.5s;
 }
 
 @keyframes smoke-rise {
@@ -1615,12 +1621,16 @@ body {
 }
 
 .door::before {
-    content: '⚪';
+    content: '';
     position: absolute;
+    width: 5px;
+    height: 5px;
+    background: #FFD700;
+    border-radius: 50%;
     right: 5px;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 0.5em;
+    box-shadow: 0 0 3px rgba(255, 215, 0, 0.6);
 }
 
 .door-wreath {
@@ -1807,6 +1817,9 @@ body {
 .lamp-1 .lamp-light { animation-delay: 0s; }
 .lamp-2 .lamp-light { animation-delay: 2s; }
 .lamp-3 .lamp-light { animation-delay: 4s; }
+.lamp-4 .lamp-light { animation-delay: 1s; }
+.lamp-5 .lamp-light { animation-delay: 3s; }
+.lamp-6 .lamp-light { animation-delay: 5s; }
 
 @keyframes lamp-flicker {
     0%, 100% { 

@@ -228,10 +228,9 @@ function initVillageInteractions() {
         window.addEventListener('click', function() {
             const light = this.querySelector('.window-light');
             if (light) {
-                light.style.animationPlayState = 
-                    light.style.animationPlayState === 'paused' ? 'running' : 'paused';
-                light.style.opacity = 
-                    light.style.animationPlayState === 'paused' ? '0.3' : '';
+                const isCurrentlyRunning = light.style.animationPlayState !== 'paused';
+                light.style.animationPlayState = isCurrentlyRunning ? 'paused' : 'running';
+                light.style.opacity = isCurrentlyRunning ? '0.3' : '';
             }
         });
     });

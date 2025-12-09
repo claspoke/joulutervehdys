@@ -7,8 +7,10 @@
 body {
     font-family: 'Georgia', serif;
     background: linear-gradient(180deg, #0a1628 0%, #1a3a52 50%, #2d5a7b 100%);
-    min-height: 100vh;
-    overflow: hidden;
+    /* Allow scrolling for more immersive exploration - 2x viewport height */
+    min-height: 200vh;
+    overflow-x: hidden;
+    overflow-y: auto;
     position: relative;
 }
 
@@ -133,6 +135,21 @@ body {
 .snowflake:nth-child(8) { left: 80%; animation-duration: 12s; animation-delay: 1s; }
 .snowflake:nth-child(9) { left: 90%; animation-duration: 9s; animation-delay: 0.5s; }
 .snowflake:nth-child(10) { left: 95%; animation-duration: 11s; animation-delay: 2s; }
+.snowflake:nth-child(11) { left: 5%; animation-duration: 10s; animation-delay: 0.3s; }
+.snowflake:nth-child(12) { left: 15%; animation-duration: 9s; animation-delay: 1.8s; }
+.snowflake:nth-child(13) { left: 25%; animation-duration: 11s; animation-delay: 0.7s; }
+.snowflake:nth-child(14) { left: 35%; animation-duration: 12s; animation-delay: 2.2s; }
+.snowflake:nth-child(15) { left: 45%; animation-duration: 8s; animation-delay: 1.3s; }
+.snowflake:nth-child(16) { left: 55%; animation-duration: 10s; animation-delay: 0.9s; }
+.snowflake:nth-child(17) { left: 65%; animation-duration: 11s; animation-delay: 2.7s; }
+.snowflake:nth-child(18) { left: 75%; animation-duration: 9s; animation-delay: 0.4s; }
+.snowflake:nth-child(19) { left: 85%; animation-duration: 12s; animation-delay: 1.6s; }
+.snowflake:nth-child(20) { left: 93%; animation-duration: 10s; animation-delay: 2.4s; }
+
+.snowflake {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
 
 @keyframes falling {
     0% {
@@ -871,4 +888,509 @@ body {
     .ground-gift {
         font-size: 1.5em;
     }
+    
+    .decorated-tree {
+        transform: scale(0.6);
+        right: 5%;
+    }
+    
+    .controls-panel {
+        padding: 5px;
+    }
+    
+    .controls-panel button {
+        font-size: 0.7em;
+        padding: 5px 10px;
+    }
+}
+
+/* Controls Panel */
+.controls-panel {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 2000;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.controls-panel button {
+    background: linear-gradient(135deg, #8B0000 0%, #DC143C 100%);
+    color: white;
+    border: 2px solid #FFD700;
+    border-radius: 25px;
+    padding: 10px 20px;
+    font-size: 0.9em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(220, 20, 60, 0.4);
+}
+
+.controls-panel button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(220, 20, 60, 0.6);
+    background: linear-gradient(135deg, #DC143C 0%, #8B0000 100%);
+}
+
+.controls-panel button.playing {
+    background: linear-gradient(135deg, #228B22 0%, #32CD32 100%);
+    box-shadow: 0 4px 15px rgba(50, 205, 50, 0.4);
+}
+
+/* Christmas Lights String */
+.lights-string {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 50px;
+    z-index: 999;
+    pointer-events: none;
+}
+
+.lights-string::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    background: #2d5a2d;
+    top: 20px;
+}
+
+.christmas-light {
+    position: absolute;
+    width: 15px;
+    height: 20px;
+    top: 10px;
+    border-radius: 0 0 50% 50%;
+    animation: light-twinkle 1.5s ease-in-out infinite;
+}
+
+.christmas-light:nth-child(odd) {
+    background: radial-gradient(circle at 50% 30%, #ff0000, #8B0000);
+    box-shadow: 0 0 20px #ff0000, 0 0 30px #ff0000;
+}
+
+.christmas-light:nth-child(even) {
+    background: radial-gradient(circle at 50% 30%, #ffd700, #b8860b);
+    box-shadow: 0 0 20px #ffd700, 0 0 30px #ffd700;
+    animation-delay: 0.75s;
+}
+
+.christmas-light:nth-child(3n) {
+    background: radial-gradient(circle at 50% 30%, #00ff00, #006400);
+    box-shadow: 0 0 20px #00ff00, 0 0 30px #00ff00;
+    animation-delay: 0.5s;
+}
+
+.christmas-light:nth-child(5n) {
+    background: radial-gradient(circle at 50% 30%, #0000ff, #00008B);
+    box-shadow: 0 0 20px #0000ff, 0 0 30px #0000ff;
+    animation-delay: 1s;
+}
+
+@keyframes light-twinkle {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.5;
+        transform: scale(0.9);
+    }
+}
+
+/* Decorated Christmas Tree */
+.decorated-tree {
+    position: fixed;
+    bottom: 10%;
+    right: 10%;
+    z-index: 20;
+}
+
+.tree-trunk {
+    width: 40px;
+    height: 60px;
+    background: #654321;
+    margin: 0 auto;
+    border-radius: 5px;
+}
+
+.tree-layer {
+    width: 0;
+    height: 0;
+    border-left: 80px solid transparent;
+    border-right: 80px solid transparent;
+    border-bottom: 80px solid #228B22;
+    margin: -20px auto 0;
+    position: relative;
+}
+
+.tree-layer.layer1 {
+    border-left-width: 50px;
+    border-right-width: 50px;
+    border-bottom-width: 50px;
+    margin-top: -70px;
+}
+
+.tree-layer.layer2 {
+    border-left-width: 65px;
+    border-right-width: 65px;
+    border-bottom-width: 65px;
+}
+
+.tree-layer.layer3 {
+    border-left-width: 80px;
+    border-right-width: 80px;
+    border-bottom-width: 80px;
+}
+
+.tree-layer.layer4 {
+    border-left-width: 95px;
+    border-right-width: 95px;
+    border-bottom-width: 95px;
+}
+
+.tree-star {
+    position: absolute;
+    top: -120px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2em;
+    animation: star-pulse 1s ease-in-out infinite;
+    filter: drop-shadow(0 0 10px #ffd700);
+}
+
+@keyframes star-pulse {
+    0%, 100% {
+        transform: translateX(-50%) scale(1);
+    }
+    50% {
+        transform: translateX(-50%) scale(1.2);
+    }
+}
+
+.ornament {
+    position: absolute;
+    font-size: 1.2em;
+    color: #ff0000;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 0 3px rgba(255, 0, 0, 0.5));
+    animation: ornament-swing 2s ease-in-out infinite;
+}
+
+.ornament:nth-child(2n) {
+    color: #ffd700;
+    filter: drop-shadow(0 0 3px rgba(255, 215, 0, 0.5));
+    animation-delay: 0.5s;
+}
+
+.ornament:nth-child(3n) {
+    color: #0000ff;
+    filter: drop-shadow(0 0 3px rgba(0, 0, 255, 0.5));
+    animation-delay: 1s;
+}
+
+.ornament.lit {
+    animation: ornament-glow 0.5s ease-in-out;
+    filter: drop-shadow(0 0 15px currentColor);
+}
+
+@keyframes ornament-swing {
+    0%, 100% {
+        transform: rotate(-3deg);
+    }
+    50% {
+        transform: rotate(3deg);
+    }
+}
+
+@keyframes ornament-glow {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.5);
+    }
+}
+
+/* Interactive Presents */
+.interactive-presents {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 15;
+}
+
+.interactive-present {
+    position: absolute;
+    font-size: 3em;
+    cursor: pointer;
+    pointer-events: all;
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.3));
+}
+
+.interactive-present:hover {
+    transform: scale(1.1);
+}
+
+.interactive-present.shake {
+    animation: shake 0.6s ease-in-out;
+}
+
+.interactive-present.opened {
+    animation: celebrate 1s ease-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: rotate(0deg); }
+    10%, 30%, 50%, 70%, 90% { transform: rotate(-5deg); }
+    20%, 40%, 60%, 80% { transform: rotate(5deg); }
+}
+
+@keyframes celebrate {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.5) rotate(180deg); }
+    100% { transform: scale(1.2) rotate(360deg); }
+}
+
+/* Confetti */
+.confetti {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 3000;
+    animation: confetti-fall 1s ease-out forwards;
+}
+
+@keyframes confetti-fall {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(300px) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* Candy Canes */
+.candy-canes {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 12;
+}
+
+.candy-cane {
+    position: absolute;
+    font-size: 3em;
+    cursor: pointer;
+    pointer-events: all;
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+}
+
+.candy-cane:hover {
+    transform: scale(1.15);
+}
+
+.candy-cane.spin {
+    animation: candy-spin 0.8s ease-in-out;
+}
+
+@keyframes candy-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Bells */
+.bells {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 13;
+}
+
+.bell {
+    position: absolute;
+    font-size: 2.5em;
+    cursor: pointer;
+    pointer-events: all;
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 4px 8px rgba(255, 215, 0, 0.4));
+}
+
+.bell:hover {
+    transform: scale(1.1);
+}
+
+.bell.ringing {
+    animation: ring 0.6s ease-in-out;
+}
+
+@keyframes ring {
+    0%, 100% { transform: rotate(0deg); }
+    10%, 30%, 50%, 70%, 90% { transform: rotate(-15deg); }
+    20%, 40%, 60%, 80% { transform: rotate(15deg); }
+}
+
+/* Gingerbread Men */
+.gingerbread-men {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 14;
+}
+
+.gingerbread-man {
+    position: absolute;
+    pointer-events: all;
+    cursor: pointer;
+}
+
+.ginger-body {
+    position: relative;
+    width: 40px;
+    height: 60px;
+    background: #8B4513;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.ginger-body::before {
+    content: '⚪⚪⚪';
+    position: absolute;
+    font-size: 0.4em;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    line-height: 1.5;
+}
+
+.ginger-head {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 30px;
+    background: #8B4513;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.ginger-head::before {
+    content: '◠';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 0.8em;
+}
+
+.ginger-arm {
+    position: absolute;
+    width: 8px;
+    height: 30px;
+    background: #8B4513;
+    border-radius: 10px;
+    top: 10px;
+}
+
+.ginger-arm-left {
+    left: -8px;
+    transform: rotate(-30deg);
+}
+
+.ginger-arm-right {
+    right: -8px;
+    transform: rotate(30deg);
+}
+
+.ginger-leg {
+    position: absolute;
+    width: 10px;
+    height: 25px;
+    background: #8B4513;
+    border-radius: 10px;
+    bottom: -20px;
+}
+
+.ginger-leg-left {
+    left: 8px;
+}
+
+.ginger-leg-right {
+    right: 8px;
+}
+
+.gingerbread-man.wave .ginger-arm-left {
+    animation: wave-arm-left 0.5s ease-in-out 2;
+}
+
+.gingerbread-man.wave .ginger-arm-right {
+    animation: wave-arm-right 0.5s ease-in-out 2;
+}
+
+@keyframes wave-arm-left {
+    0%, 100% { transform: rotate(-30deg); }
+    50% { transform: rotate(-80deg); }
+}
+
+@keyframes wave-arm-right {
+    0%, 100% { transform: rotate(30deg); }
+    50% { transform: rotate(80deg); }
+}
+
+/* Sparkle Effect */
+.sparkle {
+    position: fixed;
+    font-size: 2em;
+    pointer-events: none;
+    z-index: 3001;
+    animation: sparkle-fade 1s ease-out forwards;
+}
+
+@keyframes sparkle-fade {
+    0% {
+        opacity: 1;
+        transform: scale(0) rotate(0deg);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.5) rotate(180deg);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.5) rotate(360deg);
+    }
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0a1628;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #8B0000, #DC143C);
+    border-radius: 6px;
+    border: 2px solid #0a1628;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #DC143C, #8B0000);
 }

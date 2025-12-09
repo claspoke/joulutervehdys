@@ -3,10 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Joulutervehdys</title>
+    <title>Joulutervehdys - Hyvää Joulua!</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Background Music (disabled by default) -->
+    <!-- Note: Empty audio element - replace src with actual Christmas music file if available -->
+    <audio id="background-music" loop>
+        <source src="data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA=" type="audio/wav">
+    </audio>
+    
+    <!-- Controls Panel -->
+    <div class="controls-panel">
+        <button class="music-toggle">🎵 Play Music</button>
+        <button class="lights-toggle">💡 Lights: ON</button>
+    </div>
     <div class="moon"></div>
     
     <div class="background-stars">
@@ -21,6 +32,16 @@
     </div>
     
     <div class="snow-container">
+        <div class="snowflake">❅</div>
+        <div class="snowflake">❆</div>
+        <div class="snowflake">❅</div>
+        <div class="snowflake">❆</div>
+        <div class="snowflake">❅</div>
+        <div class="snowflake">❆</div>
+        <div class="snowflake">❅</div>
+        <div class="snowflake">❆</div>
+        <div class="snowflake">❅</div>
+        <div class="snowflake">❆</div>
         <div class="snowflake">❅</div>
         <div class="snowflake">❆</div>
         <div class="snowflake">❅</div>
@@ -89,6 +110,20 @@
         </div>
     </div>
 
+    <!-- Christmas Lights String -->
+    <div class="lights-string">
+        <div class="christmas-light" style="left: 5%;"></div>
+        <div class="christmas-light" style="left: 15%;"></div>
+        <div class="christmas-light" style="left: 25%;"></div>
+        <div class="christmas-light" style="left: 35%;"></div>
+        <div class="christmas-light" style="left: 45%;"></div>
+        <div class="christmas-light" style="left: 55%;"></div>
+        <div class="christmas-light" style="left: 65%;"></div>
+        <div class="christmas-light" style="left: 75%;"></div>
+        <div class="christmas-light" style="left: 85%;"></div>
+        <div class="christmas-light" style="left: 95%;"></div>
+    </div>
+
     <div class="greeting-container">
         <h1 class="greeting">Hyvää Joulua!</h1>
         <p class="sub-greeting">Rauhallista joulua ja onnellista uutta vuotta!</p>
@@ -97,6 +132,33 @@
             <span class="star">✨</span>
             <span class="star">⭐</span>
         </div>
+    </div>
+
+    <!-- Decorated Christmas Tree -->
+    <div class="decorated-tree">
+        <div class="tree-trunk"></div>
+        <div class="tree-layer layer1">
+            <div class="ornament" style="left: 30%;">●</div>
+            <div class="ornament" style="left: 70%;">●</div>
+        </div>
+        <div class="tree-layer layer2">
+            <div class="ornament" style="left: 25%;">●</div>
+            <div class="ornament" style="left: 50%;">●</div>
+            <div class="ornament" style="left: 75%;">●</div>
+        </div>
+        <div class="tree-layer layer3">
+            <div class="ornament" style="left: 20%;">●</div>
+            <div class="ornament" style="left: 40%;">●</div>
+            <div class="ornament" style="left: 60%;">●</div>
+            <div class="ornament" style="left: 80%;">●</div>
+        </div>
+        <div class="tree-layer layer4">
+            <div class="ornament" style="left: 15%;">●</div>
+            <div class="ornament" style="left: 35%;">●</div>
+            <div class="ornament" style="left: 55%;">●</div>
+            <div class="ornament" style="left: 75%;">●</div>
+        </div>
+        <div class="tree-star">⭐</div>
     </div>
 
     <div class="trees">
@@ -128,5 +190,48 @@
         <div class="ground-gift gift-box2">🎁</div>
         <div class="ground-gift gift-box3">🎁</div>
     </div>
+    
+    <!-- Interactive Presents -->
+    <div class="interactive-presents">
+        <div class="interactive-present" style="bottom: 25%; left: 10%;">🎁</div>
+        <div class="interactive-present" style="bottom: 30%; right: 15%;">🎁</div>
+        <div class="interactive-present" style="bottom: 22%; left: 65%;">🎁</div>
+    </div>
+    
+    <!-- Candy Canes -->
+    <div class="candy-canes">
+        <div class="candy-cane" style="top: 60%; left: 8%;">🍬</div>
+        <div class="candy-cane" style="top: 55%; right: 12%;">🍬</div>
+    </div>
+    
+    <!-- Bells -->
+    <div class="bells">
+        <div class="bell" style="top: 35%; left: 20%;">🔔</div>
+        <div class="bell" style="top: 40%; right: 25%;">🔔</div>
+    </div>
+    
+    <!-- Gingerbread Men -->
+    <div class="gingerbread-men">
+        <div class="gingerbread-man" style="bottom: 18%; left: 40%;">
+            <div class="ginger-body">
+                <div class="ginger-head">●</div>
+                <div class="ginger-arm ginger-arm-left"></div>
+                <div class="ginger-arm ginger-arm-right"></div>
+                <div class="ginger-leg ginger-leg-left"></div>
+                <div class="ginger-leg ginger-leg-right"></div>
+            </div>
+        </div>
+        <div class="gingerbread-man" style="bottom: 18%; right: 40%;">
+            <div class="ginger-body">
+                <div class="ginger-head">●</div>
+                <div class="ginger-arm ginger-arm-left"></div>
+                <div class="ginger-arm ginger-arm-right"></div>
+                <div class="ginger-leg ginger-leg-left"></div>
+                <div class="ginger-leg ginger-leg-right"></div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
 </body>
 </html>

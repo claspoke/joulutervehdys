@@ -1505,6 +1505,7 @@ body {
     animation: smoke-rise 3s ease-out infinite;
 }
 
+/* Staggered animation delays for smoke elements - supports up to 5 elements */
 .smoke:nth-child(2) {
     animation-delay: 1s;
 }
@@ -1814,6 +1815,7 @@ body {
     animation: lamp-flicker 6s ease-in-out infinite;
 }
 
+/* Animation delays for street lamps - supports up to 6 lamps */
 .lamp-1 .lamp-light { animation-delay: 0s; }
 .lamp-2 .lamp-light { animation-delay: 2s; }
 .lamp-3 .lamp-light { animation-delay: 4s; }

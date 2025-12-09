@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initCandyCaneInteractions();
     initMusicControls();
     initParallaxScrolling();
+    initVillageInteractions();
 });
 
 // Snowflake hover interactions
@@ -217,4 +218,83 @@ function createSparkle(x, y) {
     setTimeout(() => {
         sparkle.remove();
     }, 1000);
+}
+
+// Village interactions
+function initVillageInteractions() {
+    // Window click to toggle lights
+    const windows = document.querySelectorAll('.window');
+    windows.forEach(window => {
+        window.addEventListener('click', function() {
+            const light = this.querySelector('.window-light');
+            if (light) {
+                const isCurrentlyRunning = light.style.animationPlayState !== 'paused';
+                light.style.animationPlayState = isCurrentlyRunning ? 'paused' : 'running';
+                light.style.opacity = isCurrentlyRunning ? '0.3' : '';
+            }
+        });
+    });
+    
+    // Chimney smoke interaction
+    const chimneys = document.querySelectorAll('.chimney');
+    chimneys.forEach(chimney => {
+        chimney.addEventListener('click', function() {
+            const smokes = this.querySelectorAll('.smoke');
+            smokes.forEach(smoke => {
+                smoke.style.animationDuration = '1.5s';
+                setTimeout(() => {
+                    smoke.style.animationDuration = '3s';
+                }, 3000);
+            });
+        });
+    });
+    
+    // Door wreath interaction
+    const wreaths = document.querySelectorAll('.door-wreath');
+    wreaths.forEach(wreath => {
+        wreath.addEventListener('click', function(e) {
+            e.stopPropagation();
+            this.style.animation = 'none';
+            setTimeout(() => {
+                this.style.animation = '';
+            }, 10);
+            createSparkle(e.clientX, e.clientY);
+        });
+    });
+    
+    // Church bell ringing
+    const churchBell = document.querySelector('.church-bell');
+    if (churchBell) {
+        churchBell.addEventListener('click', function() {
+            this.style.animation = 'none';
+            setTimeout(() => {
+                this.style.animation = '';
+            }, 10);
+        });
+    }
+    
+    // Street lamp interaction
+    const lamps = document.querySelectorAll('.street-lamp');
+    lamps.forEach(lamp => {
+        lamp.addEventListener('click', function() {
+            const light = this.querySelector('.lamp-light');
+            if (light) {
+                light.style.animationPlayState = 
+                    light.style.animationPlayState === 'paused' ? 'running' : 'paused';
+            }
+        });
+    });
+    
+    // House hover effects
+    const houses = document.querySelectorAll('.village-house, .village-church');
+    houses.forEach(house => {
+        house.addEventListener('mouseenter', function() {
+            this.style.transform = 'scale(1.05) translateY(-5px)';
+            this.style.transition = 'all 0.3s ease';
+        });
+        
+        house.addEventListener('mouseleave', function() {
+            this.style.transform = '';
+        });
+    });
 }

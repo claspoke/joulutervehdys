@@ -1394,3 +1394,603 @@ body {
 ::-webkit-scrollbar-thumb:hover {
     background: linear-gradient(180deg, #DC143C, #8B0000);
 }
+
+/* Christmas Village */
+.christmas-village {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 300px;
+    z-index: 8;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    padding: 0 5%;
+}
+
+/* Village Houses */
+.village-house {
+    position: relative;
+    animation: house-settle 0.5s ease-out;
+}
+
+@keyframes house-settle {
+    0% { transform: translateY(50px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+
+.house-1 { animation-delay: 0.1s; }
+.house-2 { animation-delay: 0.2s; }
+.house-3 { animation-delay: 0.3s; }
+
+.house-wall {
+    width: 120px;
+    height: 140px;
+    background: linear-gradient(135deg, #d4a574 0%, #c49563 100%);
+    border: 3px solid #8B6914;
+    border-radius: 5px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.roof {
+    width: 0;
+    height: 0;
+    border-left: 70px solid transparent;
+    border-right: 70px solid transparent;
+    border-bottom: 60px solid #8B0000;
+    position: absolute;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    filter: drop-shadow(0 -5px 10px rgba(0, 0, 0, 0.3));
+}
+
+.roof-flat {
+    border-bottom-color: #6B0000;
+}
+
+.roof-snow {
+    position: absolute;
+    bottom: -8px;
+    left: -70px;
+    width: 140px;
+    height: 12px;
+    background: white;
+    border-radius: 50% 50% 0 0;
+    box-shadow: 0 2px 5px rgba(255, 255, 255, 0.5);
+}
+
+/* Chimney */
+.chimney {
+    width: 20px;
+    height: 40px;
+    background: linear-gradient(to right, #8B4513 0%, #654321 100%);
+    border: 2px solid #654321;
+    position: absolute;
+    top: -75px;
+    border-radius: 2px 2px 0 0;
+    z-index: 1;
+}
+
+.chimney:not(.chimney-left) {
+    right: 20px;
+}
+
+.chimney-left {
+    left: 20px;
+}
+
+.chimney::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    height: 8px;
+    background: #8B4513;
+    border-radius: 2px;
+}
+
+/* Animated Smoke */
+.smoke {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: rgba(200, 200, 200, 0.6);
+    border-radius: 50%;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: smoke-rise 3s ease-out infinite;
+}
+
+/* Staggered animation delays for smoke elements - supports up to 5 elements */
+.smoke:nth-child(2) {
+    animation-delay: 1s;
+}
+
+.smoke:nth-child(3) {
+    animation-delay: 2s;
+}
+
+.smoke:nth-child(4) {
+    animation-delay: 0.5s;
+}
+
+.smoke:nth-child(5) {
+    animation-delay: 1.5s;
+}
+
+@keyframes smoke-rise {
+    0% {
+        transform: translateX(-50%) translateY(0) scale(0.8);
+        opacity: 0.7;
+    }
+    50% {
+        transform: translateX(-50%) translateY(-30px) scale(1.2);
+        opacity: 0.5;
+    }
+    100% {
+        transform: translateX(-50%) translateY(-60px) scale(1.5);
+        opacity: 0;
+    }
+}
+
+/* Windows */
+.window {
+    position: absolute;
+    width: 35px;
+    height: 40px;
+    background: #1a1a2e;
+    border: 3px solid #8B6914;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.window-1 {
+    top: 30px;
+    left: 15px;
+}
+
+.window-2 {
+    top: 30px;
+    right: 15px;
+}
+
+.window-3 {
+    top: 85px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.window-light {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+    opacity: 0.9;
+    animation: window-flicker 4s ease-in-out infinite;
+    box-shadow: 
+        0 0 20px rgba(255, 215, 0, 0.8),
+        inset 0 0 15px rgba(255, 165, 0, 0.6);
+}
+
+@keyframes window-flicker {
+    0%, 100% { opacity: 0.9; }
+    50% { opacity: 0.7; }
+}
+
+.window-frame {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 2px solid #8B6914;
+}
+
+.window-frame::before {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 100%;
+    background: #8B6914;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.window-frame::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: #8B6914;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Door */
+.door {
+    position: absolute;
+    width: 30px;
+    height: 50px;
+    background: linear-gradient(to bottom, #654321 0%, #4a2c0f 100%);
+    border: 2px solid #3d1f0a;
+    border-radius: 5px 5px 0 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.door::before {
+    content: '';
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: #FFD700;
+    border-radius: 50%;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    box-shadow: 0 0 3px rgba(255, 215, 0, 0.6);
+}
+
+.door-wreath {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.2em;
+    animation: wreath-swing 3s ease-in-out infinite;
+}
+
+@keyframes wreath-swing {
+    0%, 100% { transform: translateX(-50%) rotate(-3deg); }
+    50% { transform: translateX(-50%) rotate(3deg); }
+}
+
+/* Church */
+.village-church {
+    position: relative;
+    animation: house-settle 0.5s ease-out;
+    animation-delay: 0.25s;
+}
+
+.church-wall {
+    width: 140px;
+    height: 160px;
+    background: linear-gradient(135deg, #e8d5b5 0%, #d4c4a8 100%);
+    border: 3px solid #8B6914;
+    border-radius: 5px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.church-roof {
+    width: 0;
+    height: 0;
+    border-left: 80px solid transparent;
+    border-right: 80px solid transparent;
+    border-bottom: 70px solid #6B0000;
+    position: absolute;
+    top: -70px;
+    left: 50%;
+    transform: translateX(-50%);
+    filter: drop-shadow(0 -5px 10px rgba(0, 0, 0, 0.3));
+}
+
+.church-cross {
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #FFD700;
+    font-size: 1.5em;
+    filter: drop-shadow(0 0 10px #FFD700);
+    animation: cross-glow 2s ease-in-out infinite;
+}
+
+@keyframes cross-glow {
+    0%, 100% {
+        filter: drop-shadow(0 0 10px #FFD700);
+    }
+    50% {
+        filter: drop-shadow(0 0 20px #FFD700);
+    }
+}
+
+.church-tower {
+    position: absolute;
+    width: 50px;
+    height: 80px;
+    background: linear-gradient(135deg, #e8d5b5 0%, #d4c4a8 100%);
+    border: 3px solid #8B6914;
+    top: -150px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 3px;
+}
+
+.tower-roof {
+    width: 0;
+    height: 0;
+    border-left: 32px solid transparent;
+    border-right: 32px solid transparent;
+    border-bottom: 35px solid #8B0000;
+    position: absolute;
+    top: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.church-bell {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.5em;
+    animation: bell-swing 3s ease-in-out infinite;
+    transform-origin: center -10px;
+}
+
+@keyframes bell-swing {
+    0%, 100% { transform: translate(-50%, -50%) rotate(-5deg); }
+    50% { transform: translate(-50%, -50%) rotate(5deg); }
+}
+
+.church-window {
+    position: absolute;
+    width: 50px;
+    height: 70px;
+    background: #1a1a2e;
+    border: 3px solid #8B6914;
+    border-radius: 50% 50% 0 0;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    overflow: hidden;
+}
+
+.stained-glass {
+    background: linear-gradient(
+        135deg,
+        #FF0000 0%,
+        #FFD700 25%,
+        #00FF00 50%,
+        #0000FF 75%,
+        #8B00FF 100%
+    );
+    animation: stained-glass-glow 5s ease-in-out infinite;
+}
+
+@keyframes stained-glass-glow {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 1; }
+}
+
+.church-door {
+    position: absolute;
+    width: 40px;
+    height: 60px;
+    background: linear-gradient(to bottom, #654321 0%, #4a2c0f 100%);
+    border: 3px solid #3d1f0a;
+    border-radius: 50% 50% 0 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Street Lamps */
+.street-lamp {
+    position: absolute;
+    bottom: 20px;
+    z-index: 9;
+}
+
+.lamp-1 { left: 18%; }
+.lamp-2 { left: 50%; }
+.lamp-3 { right: 18%; }
+
+.lamp-post {
+    width: 6px;
+    height: 100px;
+    background: linear-gradient(to right, #2d2d2d 0%, #1a1a1a 100%);
+    border-radius: 3px;
+    margin: 0 auto;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.lamp-light {
+    width: 30px;
+    height: 25px;
+    background: linear-gradient(to bottom, #FFD700 0%, #FFA500 100%);
+    border-radius: 50%;
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 
+        0 0 30px rgba(255, 215, 0, 0.9),
+        0 0 50px rgba(255, 165, 0, 0.6),
+        0 0 70px rgba(255, 215, 0, 0.3);
+    animation: lamp-flicker 6s ease-in-out infinite;
+}
+
+/* Animation delays for street lamps - supports up to 6 lamps */
+.lamp-1 .lamp-light { animation-delay: 0s; }
+.lamp-2 .lamp-light { animation-delay: 2s; }
+.lamp-3 .lamp-light { animation-delay: 4s; }
+.lamp-4 .lamp-light { animation-delay: 1s; }
+.lamp-5 .lamp-light { animation-delay: 3s; }
+.lamp-6 .lamp-light { animation-delay: 5s; }
+
+@keyframes lamp-flicker {
+    0%, 100% { 
+        opacity: 1;
+        box-shadow: 
+            0 0 30px rgba(255, 215, 0, 0.9),
+            0 0 50px rgba(255, 165, 0, 0.6),
+            0 0 70px rgba(255, 215, 0, 0.3);
+    }
+    50% { 
+        opacity: 0.85;
+        box-shadow: 
+            0 0 25px rgba(255, 215, 0, 0.8),
+            0 0 40px rgba(255, 165, 0, 0.5),
+            0 0 60px rgba(255, 215, 0, 0.2);
+    }
+}
+
+.light-glow {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.4) 0%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+/* Northern Lights (Aurora Borealis) */
+.northern-lights {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 50%;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+.aurora {
+    position: absolute;
+    width: 100%;
+    height: 200px;
+    filter: blur(40px);
+    opacity: 0.5;
+    animation: aurora-wave 20s ease-in-out infinite;
+}
+
+.aurora-1 {
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(0, 255, 127, 0.3) 25%,
+        rgba(0, 191, 255, 0.3) 50%,
+        rgba(138, 43, 226, 0.3) 75%,
+        transparent 100%
+    );
+    top: 5%;
+    animation-delay: 0s;
+}
+
+.aurora-2 {
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(138, 43, 226, 0.3) 20%,
+        rgba(0, 255, 127, 0.3) 50%,
+        rgba(0, 191, 255, 0.3) 80%,
+        transparent 100%
+    );
+    top: 10%;
+    animation-delay: 7s;
+}
+
+.aurora-3 {
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(0, 191, 255, 0.3) 30%,
+        rgba(138, 43, 226, 0.3) 60%,
+        rgba(0, 255, 127, 0.3) 90%,
+        transparent 100%
+    );
+    top: 15%;
+    animation-delay: 14s;
+}
+
+@keyframes aurora-wave {
+    0%, 100% {
+        transform: translateX(-10%) scaleY(1);
+        opacity: 0.5;
+    }
+    25% {
+        transform: translateX(0%) scaleY(1.2);
+        opacity: 0.7;
+    }
+    50% {
+        transform: translateX(10%) scaleY(1);
+        opacity: 0.5;
+    }
+    75% {
+        transform: translateX(0%) scaleY(0.8);
+        opacity: 0.6;
+    }
+}
+
+/* Responsive updates for village */
+@media (max-width: 768px) {
+    .christmas-village {
+        height: 200px;
+        padding: 0 2%;
+    }
+    
+    .house-wall {
+        width: 80px;
+        height: 100px;
+    }
+    
+    .roof {
+        border-left-width: 50px;
+        border-right-width: 50px;
+        border-bottom-width: 40px;
+        top: -40px;
+    }
+    
+    .window {
+        width: 25px;
+        height: 30px;
+    }
+    
+    .window-1 {
+        top: 20px;
+        left: 10px;
+    }
+    
+    .window-2 {
+        top: 20px;
+        right: 10px;
+    }
+    
+    .door {
+        width: 25px;
+        height: 40px;
+    }
+    
+    .church-wall {
+        width: 100px;
+        height: 120px;
+    }
+    
+    .church-roof {
+        border-left-width: 60px;
+        border-right-width: 60px;
+        border-bottom-width: 50px;
+        top: -50px;
+    }
+    
+    .church-tower {
+        width: 35px;
+        height: 60px;
+        top: -110px;
+    }
+    
+    .lamp-post {
+        height: 70px;
+    }
+    
+    .northern-lights {
+        opacity: 0.4;
+    }
+}

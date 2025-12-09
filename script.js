@@ -149,7 +149,13 @@ function initMusicControls() {
                 this.textContent = '🎵 Play Music';
                 this.classList.remove('playing');
             } else {
-                audio.play();
+                // Handle autoplay restrictions
+                audio.play().catch(error => {
+                    console.log('Audio playback failed:', error);
+                    this.textContent = '🎵 Play Music';
+                    this.classList.remove('playing');
+                    isPlaying = false;
+                });
                 this.textContent = '🔇 Pause Music';
                 this.classList.add('playing');
             }
@@ -160,23 +166,36 @@ function initMusicControls() {
 
 // Parallax scrolling effect
 function initParallaxScrolling() {
-    window.addEventListener('scroll', function() {
+    // Cache DOM elements for better performance
+    const moon = document.querySelector('.moon');
+    const stars = document.querySelectorAll('.bg-star');
+    const trees = document.querySelectorAll('.tree');
+    
+    let ticking = false;
+    
+    function updateParallax() {
         const scrolled = window.pageYOffset;
         
-        const moon = document.querySelector('.moon');
         if (moon) {
             moon.style.transform = `translateY(${scrolled * 0.5}px)`;
         }
         
-        const stars = document.querySelectorAll('.bg-star');
         stars.forEach((star, index) => {
             star.style.transform = `translateY(${scrolled * (0.3 + index * 0.05)}px)`;
         });
         
-        const trees = document.querySelectorAll('.tree');
         trees.forEach(tree => {
             tree.style.transform = `translateY(${scrolled * -0.2}px)`;
         });
+        
+        ticking = false;
+    }
+    
+    window.addEventListener('scroll', function() {
+        if (!ticking) {
+            window.requestAnimationFrame(updateParallax);
+            ticking = true;
+        }
     });
 }
 
